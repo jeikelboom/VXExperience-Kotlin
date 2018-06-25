@@ -1,5 +1,6 @@
 package tutorial
 
+import com.sun.org.apache.bcel.internal.generic.VariableLengthInstruction
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.fail
@@ -209,10 +210,51 @@ val vijf = 10.gedeeldDoor(2)
  */
 val zes = 12 gedeeldDoor  2
 
+/* ============================================================================
+ * Type systeem, Lists etc.
+ * Cat is a subtype of Animal.
+ * Nullability is part of the type system
+ * Cat is a subtype of Cat?
+ *
+ */
+
+class NullDemo() {
+
+    @Test
+    fun nullSafety() {
+        var kitty :Cat? = null
+        if (kitty is Cat) {
+            println("Kit is a Cat")
+        } else {
+            println("Kit is not a Cat")
+        }
+    }
+}
+
+
+/*
+ * Immutable collections of immutable objects have subtype relations.
+ * A List in Kotlin is immutable by default.
+ * In that case a List<Cat> is a subtype of List<Animal>
+ * An off course a List<Cat> subtype if List<Cat?> subtype of List<Animal?>
+ */
+
+
+class SubtypeDemo() {
+
+    @Test
+    fun subtypes() {
+        val cats: List<Cat> = listOf(Cat("flippy"), Cat("floppy "))
+        val animals: List<Animal> = listOf(Animal("flappy"))
+        val allAnimals :List<Animal> = animals + cats 
+        println(allAnimals)
+
+    }
+}
 
 
 /* ============================================================================
-An extensive example on defininig a datatype.
+ An extensive example on defininig a datatype.
 This class has initialization logic
 It show operator overloading (you can define your own {+, -, *, /}
  */
