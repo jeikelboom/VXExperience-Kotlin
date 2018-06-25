@@ -246,11 +246,49 @@ class SubtypeDemo() {
     fun subtypes() {
         val cats: List<Cat> = listOf(Cat("flippy"), Cat("floppy "))
         val animals: List<Animal> = listOf(Animal("flappy"))
-        val allAnimals :List<Animal> = animals + cats 
+        val allAnimals :List<Animal> = animals + cats
         println(allAnimals)
 
     }
 }
+
+
+/* ============================================================================
+ * Lambdas
+ * Kotlin has support for lambda expressions
+ */
+
+val addThemUp: (Int, Int) -> Int = {x, y -> x + y}
+fun addThemUp2(x: Int, y: Int): Int = x + y
+
+// Can use it as shortcut
+val incThemUp: (Int) -> Int = {it + 1}
+
+class LambdaDemo {
+    @Test
+    fun arith() {
+        assertEquals(7, addThemUp(3,4))
+        assertEquals(7, addThemUp2(3,4))
+        assertEquals(7, incThemUp(6))
+    }
+
+    data class Person(val name: String, val money: Int)
+    val bill = Person("Bill", 5000)
+    val larry = Person("Larry", 300)
+    val donald= Person("Donald", 2500)
+    val richPeople: List<Person> = listOf(larry, bill, donald)
+
+    /* Lambdas can be used with lists.
+     */
+    @Test
+    fun list() {
+        assertEquals(7800, richPeople.sumBy { it.money })
+        assertEquals(bill, richPeople.maxBy { it.money })
+        assertEquals(listOf(bill, donald), richPeople.filter({it.money > 500 }))
+    }
+}
+
+
 
 
 /* ============================================================================
@@ -379,6 +417,7 @@ class RationalsTest {
         val b = - a
         assertEquals(Rational(-3, 5), b)
     }
+
     @Test fun zero() {
         val one = 0 gedeeldDoor 5
         assertEquals(0, one.numerator)
