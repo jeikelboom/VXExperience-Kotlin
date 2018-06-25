@@ -252,6 +252,26 @@ class SubtypeDemo() {
     }
 }
 
+/* ============================================================================
+ * Overview of the type system.
+ * We denote supertype here by a >, like Super > Sub
+ * The type Any (like Object in Java) is the supertype of all other classes.
+ * But there is also a type Nothing which is the subtype of all other classes.
+ *  Any > Animal > Cat > Nothing
+ * There is a parallel universe of nullable types:
+ *  Any? > Animal? > Cat? > Nothing?
+ * And off course, between the parallel universes:
+ *  Any? > Any
+ *  Aminal? > Animal
+ *  Cat? > Cat
+ * On the bottom of the type system we have Unit an Nothing
+ * Nothing is an empty type, it has an empty set of permissable values.
+ * Returning Nothing results in stopping the program or looping forever.
+ * Nothing? is in fact the type of null, the only value possible.
+ * Unit is a type with exactly one value Unit.
+ * Returning Unit is similar to returning void in Java.
+ *
+ */
 
 /* ============================================================================
  * Lambdas
